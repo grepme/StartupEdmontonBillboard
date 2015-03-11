@@ -127,7 +127,7 @@ def str_hour_to_hour(s):
 @app.route('/')
 def index():
     """Return the template with the event calendar"""
-    return render_template('index.html', events=get_calendar_today(CALENDAR_URL))
+    return render_template('index.html', events=get_calendar_events_today(CALENDAR_URL))
 
 
 @app.route('/events/')
