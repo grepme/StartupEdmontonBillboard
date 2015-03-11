@@ -47,26 +47,10 @@
     $(document).foundation();
 </script>
 <script>
-    /*
-     var body = document.getElementById('main');
-     var mc = new Hammer(body);
-     mc.on("panleft panright tap press", function (ev) {
-     console.log("GOT THE TOUCH EVENT!");
-
-     });
-     */
 
     var tapMutexLock = false;
 
     function bindAll() {
-        $(".event").hammer().bind("press", function () {
-            console.log("STILL GOT IT");
-            $(this).hide();
-        });
-        $(".event").hammer().bind("swipe", function () {
-            console.log("SLIDE EVENT!");
-            $(this).slideUp();
-        });
         $(".event").hammer().bind("tap", function () {
 
             console.log("TAP EVENT!");
