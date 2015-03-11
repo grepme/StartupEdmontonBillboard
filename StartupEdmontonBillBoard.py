@@ -8,40 +8,43 @@ from settings import API_KEY
 
 app = Flask(__name__)
 
-CALENDAR_URL = "https://www.googleapis.com/calendar/v3/calendars/startupedmonton.com_1hv08457agfled5c5doo9evhk4%40group.calendar.google.com/events?key={}".format(
-    API_KEY)
+CALENDAR_URL = "https://www.googleapis.com/calendar/v3/calendars/startupedmonton.com_1hv08457agfled5c5doo9evhk4%40group.calendar.google.com/events"
 CALENDAR_CACHED = None
 EVENTS_CACHED = None
 
 
-def cache_calendar(calendar_url):
+def cache_calendar(calendar_url, params=None):
     """Attempt to connect to the calendar and fetch the JSON provided."""
     try:
         global CALENDAR_CACHED
-        CALENDAR_CACHED = requests.get(calendar_url).json()
+        CALENDAR_CACHED = requests.get(calendar_url, params=params).json()
     except ConnectionError:
         return False
     return CALENDAR_CACHED
 
 
-def get_calendar(calendar_url):
+def get_calendar(calendar_url, params=None):
     """Return cache or set a new cache on the calendar for today"""
-    return cache_calendar(calendar_url)
+    return cache_calendar(calendar_url, params=params)
     # return CALENDAR_CACHED or cache_calendar(calendar_url)
 
 
 def get_calendar_today(CALENDAR_URL):
-    cal = get_calendar(CALENDAR_URL)
-    today = datetime.datetime.now().date()
-    events = []
-    for event_iter, event in enumerate(cal['items']):
-        if 'start' in event and 'dateTime' in event['start']:
-            event_start_time = convert_from_iso(event['start']['dateTime']).date()
-            if today == event_start_time:
-                events.append(event)
+    today = datetime.datetime.today()
+    tomorrow = today
+    tomorrow.day += 1
+    cal = get_calendar(CALENDAR_URL, params={'key': API_KEY, 'singleEvents': True,
+                                             'timeMax': tomorrow.strftime("%Y-%m-%dT00:00:00-06:00"),
+                                             'timeMin': today.strftime("%Y-%m-%dT00:00:00-06:00")})
+    # today = datetime.datetime.now().date()
+    # for event_iter, event in enumerate(cal['items']):
+    # if 'start' in event and 'dateTime' in event['start']:
+    #         event_start_time = convert_from_iso(event['start']['dateTime']).date()
+    #         if today == event_start_time:
+    #             events.append(event)
     global EVENTS_CACHED
-    EVENTS_CACHED = events
-    return events
+    EVENTS_CACHED = cal['items']
+    return EVENTS_CACHED
 
 
 def convert_from_iso(s):
@@ -57,11 +60,14 @@ def find_event_property(properties, value, events):
 
 def compare_events(events_prev, events_new):
     for event in events_prev:
-        if not find_event_property('start', event['start'], events_new) or \
-                not find_event_property('end', event['end'], events_new) or \
-                not find_event_property('summary', event['summary'], events_new) or \
-                not find_event_property('location', event['location'], events_new) or \
-                not find_event_property('description', event['description'], events_new):
+        if 'start' in event and not find_event_property('start', event['start'], events_new) or \
+                                'end' in event and not find_event_property('end', event['end'], events_new) or \
+                                'summary' in event and not find_event_property('summary', event['summary'],
+                                                                               events_new) or \
+                                'location' in event and not find_event_property('location', event['location'],
+                                                                                events_new) or \
+                                'description' in event and not find_event_property('description', event['description'],
+                                                                                   events_new):
             return False
     return True
 
