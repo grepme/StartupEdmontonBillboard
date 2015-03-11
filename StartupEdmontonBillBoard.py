@@ -32,7 +32,7 @@ def get_calendar(calendar_url, params=None):
 def get_calendar_today(CALENDAR_URL):
     today = datetime.datetime.today()
     tomorrow = today
-    tomorrow.day += 1
+    tomorrow += datetime.timedelta(days=1)
     cal = get_calendar(CALENDAR_URL, params={'key': API_KEY, 'singleEvents': True,
                                              'timeMax': tomorrow.strftime("%Y-%m-%dT00:00:00-06:00"),
                                              'timeMin': today.strftime("%Y-%m-%dT00:00:00-06:00")})
