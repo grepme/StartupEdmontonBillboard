@@ -4,11 +4,11 @@ import requests
 from requests.exceptions import ConnectionError
 import datetime
 
-from settings import API_KEY
+from settings import API_KEY, CALENDAR_ID
 
 app = Flask(__name__)
 
-CALENDAR_URL = "https://www.googleapis.com/calendar/v3/calendars/startupedmonton.com_1hv08457agfled5c5doo9evhk4%40group.calendar.google.com/events"
+CALENDAR_URL = "https://www.googleapis.com/calendar/v3/calendars/{}/events".format(CALENDAR_ID)
 CALENDAR_CACHED = None
 EVENTS_CACHED = None
 
@@ -53,7 +53,7 @@ def convert_from_iso(s):
 
 def find_event_property(properties, value, events):
     for event in events:
-        if event[properties] == value:
+        if properties in event and event[properties] == value:
             return True
     return False
 
@@ -69,6 +69,8 @@ def compare_events(events_prev, events_new):
                                 'description' in event and not find_event_property('description', event['description'],
                                                                                    events_new):
             return False
+    if len(events_prev) != len(events_new):
+        return False
     return True
 
 
