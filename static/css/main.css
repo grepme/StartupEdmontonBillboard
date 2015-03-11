@@ -93,23 +93,39 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-body{
+body {
     background-color: #8FC748;
+    overflow: hidden;
+    color: white;
 }
 
+.title {
+    font-weight: 900;
+    font-size: 5em;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 
+.event-header {
+    color: white;
+}
 
+.icon-buffer {
+    margin-right: 5px;
+}
 
+.detail {
+    margin-left: 45px;
+    text-align: left;
+    font-size: 24px;
+}
 
-
-
-
-
-
-
-
-
-
+.description {
+    margin-left: 45px;
+    text-align: left;
+    display: none;
+    font-size: 36px;
+}
 
 /* ==========================================================================
    Helper classes
@@ -198,9 +214,9 @@ body{
 }
 
 @media print,
-       (-o-min-device-pixel-ratio: 5/4),
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 120dpi) {
+(-o-min-device-pixel-ratio: 5/4),
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
 }
 
@@ -215,8 +231,9 @@ body{
     *:before,
     *:after {
         background: transparent !important;
-        color: #000 !important; /* Black prints faster:
-                                   http://www.sanbeiji.com/archives/953 */
+        color: #000 !important;
+        /* Black prints faster:
+                                          http://www.sanbeiji.com/archives/953 */
         box-shadow: none !important;
         text-shadow: none !important;
     }
@@ -238,7 +255,6 @@ body{
      * Don't show links that are fragment identifiers,
      * or use the `javascript:` pseudo protocol
      */
-
     a[href^="#"]:after,
     a[href^="javascript:"]:after {
         content: "";
@@ -254,7 +270,6 @@ body{
      * Printing Tables:
      * http://css-discuss.incutio.com/wiki/Printing_Tables
      */
-
     thead {
         display: table-header-group;
     }
