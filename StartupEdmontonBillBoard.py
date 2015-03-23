@@ -67,11 +67,30 @@ def get_calendar_events_today(calendar_url):
     # Get the calendar events subjective to time and singleEvents which expands recurring events
     cal = get_calendar_events(calendar_url, params={'key': API_KEY, 'singleEvents': True,
                                                     'timeMax': tomorrow.strftime("%Y-%m-%dT00:00:00-06:00"),
-                                                    'timeMin': today.strftime("%Y-%m-%dT00:00:00-06:00")})
+                                                    'timeMin': today.strftime("%Y-%m-%dT00:00:00-06:00"),
+    })
 
     # Specifically, events are held in the items array
     EVENTS_CACHED = cal['items']
     return EVENTS_CACHED
+
+
+def get_calendar_events_limit(calendar_url, limit=10):
+    """Get the calendar events from only today. 24 hour span from midnight."""
+    # Access the global cache
+    global EVENTS_CACHED
+
+    # Construct today and tomorrow datetime objects
+    today = datetime.datetime.today()
+
+    # Get the calendar events subjective to time and singleEvents which expands recurring events
+    cal = get_calendar_events(calendar_url, params={'key': API_KEY, 'singleEvents': True,
+                                                    'orderBy': 'startTime',
+                                                    'timeMin': today.strftime("%Y-%m-%dT00:00:00-06:00")})
+
+    # Specifically, events are held in the items array
+    EVENTS_CACHED = cal['items']
+    return EVENTS_CACHED[:limit]
 
 
 def convert_from_iso(s):
@@ -127,7 +146,8 @@ def str_hour_to_hour(s):
 @app.route('/')
 def index():
     """Return the template with the event calendar"""
-    return render_template('index.html', events=get_calendar_events_today(CALENDAR_URL))
+    # return render_template('index.html', events=get_calendar_events_today(CALENDAR_URL))
+    return render_template('index.html', events=get_calendar_events_limit(CALENDAR_URL))
 
 
 @app.route('/events/')
@@ -135,7 +155,8 @@ def events():
     """Queries Google and asks for update on calendar"""
     # Compare cache against a new GET request
     temp_cache = EVENTS_CACHED
-    events_new = get_calendar_events_today(CALENDAR_URL)
+    # events_new = get_calendar_events_today(CALENDAR_URL)
+    events_new = get_calendar_events_limit(CALENDAR_URL)
 
     # If not change is detected, tell the browser to keep it's current content.
     if temp_cache is None or compare_events(temp_cache, events_new):
