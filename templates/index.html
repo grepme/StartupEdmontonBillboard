@@ -32,8 +32,13 @@
     </div>
 </div>
 <div id="events">
-    {% include 'events.html' %}
+    {% if events_sorted %}
+        {% include 'events_sorted.html' %}
+    {% else %}
+        {% include 'events.html' %}
+    {% endif %}
 </div>
+<footer class="footer-margin"></footer>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"><\/script>')</script>
@@ -67,8 +72,9 @@
     window.setInterval(function () {
         $.get("/events/", function (data) {
             if (data != "false") {
-                $("#events").html(data);
-                bindAll();
+                console.log("CHANGE DETECTED!");
+                $("#events").html(data);;
+                bindAll()
             }
         });
     }, 10000);

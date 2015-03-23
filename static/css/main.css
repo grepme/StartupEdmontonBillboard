@@ -95,19 +95,34 @@ textarea {
 
 body {
     background-color: #8FC748;
-    overflow: hidden;
     color: white;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.footer-margin{
+    min-height: 500px;
 }
 
 .title {
     font-weight: 900;
     font-size: 5em;
     margin-top: 50px;
-    margin-bottom: 50px;
 }
 
 .event-header {
     color: white;
+    text-align: left;
+}
+
+.event-header-day{
+    color: white;
+    font-weight: 900;
+    font-size: 4em;
+    margin-top: 50px;
+    text-align: left;
 }
 
 .icon-buffer {

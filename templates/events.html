@@ -3,7 +3,7 @@
         <div class="event medium-11 medium-offset-1">
 
             <h1 class="event-header"><i class="fa fa-arrow-circle-right icon-buffer"></i>{{ event.summary }}</h1>
-
+            {{ event }}
             <span class="detail">{{ event.start.dateTime|str_hour }} &dash; {{ event.end.dateTime|str_hour }}</span> <br>
             {% if event.location %}
             <span class="detail">Location: {{ event.location }}</span> <br>
