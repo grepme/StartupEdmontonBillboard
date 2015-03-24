@@ -110,6 +110,7 @@ body {
     font-weight: 900;
     font-size: 5em;
     margin-top: 50px;
+    color: white;
 }
 
 .event-header {
@@ -140,6 +141,14 @@ body {
     text-align: left;
     display: none;
     font-size: 36px;
+}
+
+/* Overwrite Slide.js BS */
+.reveal .slides {
+    width: inherit !important;
+    height: inherit !important;
+    text-align: inherit !important;
+    zoom: 0 !important;
 }
 
 /* ==========================================================================
