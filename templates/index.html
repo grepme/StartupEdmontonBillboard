@@ -88,6 +88,10 @@
                 $(this).children(".description").slideToggle();
             }
         });
+        $("body").hammer().bind("slidedown", function () {
+
+            console.log("At least we got this.");
+        });
     }
     window.setInterval(function () {
         tapMutexLock = false;
@@ -98,8 +102,7 @@
             if (data != "false") {
                 console.log("CHANGE DETECTED!");
                 $("#events").html(data);
-                ;
-                bindAll()
+                bindAll();
             }
         });
     }, 10000);
