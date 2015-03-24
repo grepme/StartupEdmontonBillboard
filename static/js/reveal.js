@@ -3731,8 +3731,10 @@
                 console.log("SWIPE REVEAL!");
 				if( config.embedded ) {
 					if( touch.captured || isVerticalSlide( currentSlide ) ) {
-                        console.log("PREVENT DEFAULT1");
-						event.preventDefault();
+                        if (config.blockverticaltouch){
+                            console.log("PREVENT DEFAULT1");
+                            event.preventDefault();
+                        }
 					}
 				}
 				// Not embedded? Block them all to avoid needless tossing
