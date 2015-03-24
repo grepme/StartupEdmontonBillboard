@@ -3618,7 +3618,7 @@
 		// If the input resulted in a triggered action we should prevent
 		// the browsers default behavior
 		if( triggered ) {
-			event.preventDefault && event.preventDefault();
+			//event.preventDefault && event.preventDefault();
 		}
 		// ESC or O key
 		else if ( ( event.keyCode === 27 || event.keyCode === 79 ) && features.transforms3d ) {
@@ -3732,7 +3732,6 @@
 				if( config.embedded ) {
 					if( touch.captured || isVerticalSlide( currentSlide ) ) {
                         if (config.blockverticaltouch){
-                            console.log("PREVENT DEFAULT1");
                             event.preventDefault();
                         }
 					}
@@ -3740,7 +3739,6 @@
 				// Not embedded? Block them all to avoid needless tossing
 				// around of the viewport in iOS
 				else if (config.blockverticaltouch) {
-                    console.log("PREVENT DEFAULT2");
 					event.preventDefault();
 				}
 
@@ -3894,7 +3892,7 @@
 		// TODO There's a bug here where the event listeners are not
 		// removed after deactivating the overview.
 		if( eventsAreBound && isOverview() ) {
-			event.preventDefault();
+			//event.preventDefault();
 
 			var element = event.target;
 

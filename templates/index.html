@@ -47,6 +47,7 @@
             <div class="row">
                 <div class="medium-11 medium-offset-1">
                     <h1 class="title">Featured Startup</h1>
+
                     <div class="medium-offset-2 medium-5 columns">
                         <img class="" src="{{ url_for('static', filename='img/startups/twofold.png') }}">
                     </div>
@@ -118,6 +119,13 @@
         embedded: true,
         blockverticaltouch: false,
         transition: 'slide' // none/fade/slide/convex/concave/zoom
+    });
+    Reveal.addEventListener('slidechanged', function (event) {
+        // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+
+        //Brings the page back to the top of the section of the slide
+        window.scrollTo(0,0);
+
     });
 
 </script>
