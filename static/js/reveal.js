@@ -140,7 +140,10 @@
 			viewDistance: 3,
 
 			// Script dependencies to load
-			dependencies: []
+			dependencies: [],
+
+            //Modified: Allows for vertical swiping on touch screens to be blocked
+            blockverticaltouch: true
 
 		},
 
@@ -3732,7 +3735,7 @@
 				}
 				// Not embedded? Block them all to avoid needless tossing
 				// around of the viewport in iOS
-				else {
+				else if (config.blockverticaltouch) {
 					event.preventDefault();
 				}
 
