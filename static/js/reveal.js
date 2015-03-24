@@ -882,9 +882,9 @@
 		window.addEventListener( 'resize', onWindowResize, false );
 
 		if( config.touch ) {
-			dom.wrapper.addEventListener( 'touchstart', onTouchStart, false );
-			dom.wrapper.addEventListener( 'touchmove', onTouchMove, false );
-			dom.wrapper.addEventListener( 'touchend', onTouchEnd, false );
+			//dom.wrapper.addEventListener( 'touchstart', onTouchStart, false );
+			//dom.wrapper.addEventListener( 'touchmove', onTouchMove, false );
+			//dom.wrapper.addEventListener( 'touchend', onTouchEnd, false );
 
 			// Support pointer-style touch interaction as well
 			if( window.navigator.pointerEnabled ) {
@@ -937,7 +937,7 @@
 		if( navigator.userAgent.match( /android/gi ) ) {
 			pointerEvents = [ 'touchstart' ];
 		}
-
+        /*
 		pointerEvents.forEach( function( eventName ) {
 			dom.controlsLeft.forEach( function( el ) { el.addEventListener( eventName, onNavigateLeftClicked, false ); } );
 			dom.controlsRight.forEach( function( el ) { el.addEventListener( eventName, onNavigateRightClicked, false ); } );
@@ -946,6 +946,7 @@
 			dom.controlsPrev.forEach( function( el ) { el.addEventListener( eventName, onNavigatePrevClicked, false ); } );
 			dom.controlsNext.forEach( function( el ) { el.addEventListener( eventName, onNavigateNextClicked, false ); } );
 		} );
+		*/
 
 	}
 
