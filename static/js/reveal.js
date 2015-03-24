@@ -3728,6 +3728,7 @@
 
 				// If we're embedded, only block touch events if they have
 				// triggered an action
+                console.log("SWIPE REVEAL!");
 				if( config.embedded ) {
 					if( touch.captured || isVerticalSlide( currentSlide ) ) {
 						event.preventDefault();
