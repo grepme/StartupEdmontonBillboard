@@ -1366,7 +1366,7 @@
 
 		dom.overlay.querySelector( '.close' ).addEventListener( 'click', function( event ) {
 			closeOverlay();
-			event.preventDefault();
+			//event.preventDefault();
 		}, false );
 
 		dom.overlay.querySelector( '.external' ).addEventListener( 'click', function( event ) {
@@ -1413,7 +1413,7 @@
 
 			dom.overlay.querySelector( '.close' ).addEventListener( 'click', function( event ) {
 				closeOverlay();
-				event.preventDefault();
+				//event.preventDefault();
 			}, false );
 
 			setTimeout( function() {
@@ -3629,7 +3629,7 @@
 				toggleOverview();
 			}
 
-			event.preventDefault && event.preventDefault();
+			//event.preventDefault && event.preventDefault();
 		}
 
 		// If auto-sliding is enabled we need to cue up
@@ -3700,7 +3700,7 @@
 					}
 				}
 
-				event.preventDefault();
+				//event.preventDefault();
 
 			}
 			// There was only one touch point, look for a swipe
@@ -3732,14 +3732,14 @@
 				if( config.embedded ) {
 					if( touch.captured || isVerticalSlide( currentSlide ) ) {
                         if (config.blockverticaltouch){
-                            event.preventDefault();
+                            //event.preventDefault();
                         }
 					}
 				}
 				// Not embedded? Block them all to avoid needless tossing
 				// around of the viewport in iOS
 				else if (config.blockverticaltouch) {
-					event.preventDefault();
+					//event.preventDefault();
 				}
 
 			}
@@ -3747,7 +3747,7 @@
 		// There's a bug with swiping on some Android devices unless
 		// the default action is always prevented
 		else if( navigator.userAgent.match( /android/gi ) ) {
-			event.preventDefault();
+			//event.preventDefault();
 		}
 
 	}
@@ -3829,7 +3829,7 @@
 
 		onUserInput( event );
 
-		event.preventDefault();
+		//event.preventDefault();
 
 		var slidesTotal = toArray( dom.wrapper.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR ) ).length;
 		var slideIndex = Math.floor( ( event.clientX / dom.wrapper.offsetWidth ) * slidesTotal );
@@ -3926,7 +3926,7 @@
 			var url = event.currentTarget.getAttribute( 'href' );
 			if( url ) {
 				showPreview( url );
-				event.preventDefault();
+				//event.preventDefault();
 			}
 		}
 
