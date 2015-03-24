@@ -294,7 +294,6 @@ body {
   bottom: 0;
   left: 0;
   margin: auto;
-  overflow: visible;
   z-index: 1;
   text-align: center;
   -webkit-perspective: 600px;
@@ -642,7 +641,6 @@ body {
 
 .reveal.overview .slides section {
   height: 700px;
-  overflow: hidden;
   opacity: 1 !important;
   visibility: visible !important;
   cursor: pointer;
@@ -673,8 +671,7 @@ body {
 .reveal.overview .slides > section.stack {
   padding: 0;
   top: 0 !important;
-  background: none;
-  overflow: visible; }
+  background: none;  }
 
 /*********************************************
  * PAUSED MODE
@@ -699,8 +696,7 @@ body {
 /*********************************************
  * FALLBACK
  *********************************************/
-.no-transforms {
-  overflow-y: auto; }
+.no-transforms {  }
 
 .no-transforms .reveal .slides {
   position: relative;
@@ -1029,7 +1025,6 @@ body {
           transform: scale(0.2); }
 
 .reveal .overlay.overlay-help .viewport {
-  overflow: auto;
   color: #fff; }
 
 .reveal .overlay.overlay-help .viewport .viewport-inner {
@@ -1079,7 +1074,6 @@ body {
 .reveal .roll {
   display: inline-block;
   line-height: 1.2;
-  overflow: hidden;
   vertical-align: top;
   -webkit-perspective: 400px;
           perspective: 400px;
